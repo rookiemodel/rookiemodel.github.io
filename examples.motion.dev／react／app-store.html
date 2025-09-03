@@ -2433,7 +2433,7 @@ const List = ({ selectedId }) => (
     </ul>
 );
 
-const Item = ({id, img, top: s, bottom: l, left: d, width: c, desc}) => {
+const Item = ({id, img, theme, top: s, bottom: l, left: d, width: c, desc}) => {
     const { category, title } = items.find((item) => item.id === id);
 
     return (
@@ -2448,7 +2448,7 @@ const Item = ({id, img, top: s, bottom: l, left: d, width: c, desc}) => {
                 <Link to="/" />
             </motion.div>
 
-            <div className="card-content-container open">
+            <div className={`card-content-container open ${theme}`}>
                 <motion.div className="card-content" layoutId={`card-container-${id}`}>
                     <motion.div className="card-image-container"
                         layoutId={`card-image-container-${id}`}

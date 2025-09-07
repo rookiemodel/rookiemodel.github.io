@@ -1,0 +1,207 @@
+<!doctype html> 
+
+<html lang="en"> 
+<head>
+<title>Page wipe — Motion Example</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="An example of combining a full page wipe with a shared element transition using Motion's view function." />
+<meta property="og:title" content="iOS App Store" />
+<meta property="og:description" content="An example of combining a full page wipe with a shared element transition using Motion's view function." />
+<meta property="og:site_name" content="Motion examples" />
+<meta property="og:image" content="https://examples.motion.dev/social/js/page-wipe.png" />
+<meta property="og:image:alt" content="Page wipe" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+
+<link rel="canonical" href="https://examples.motion.dev/js/page-wipe" />
+<link rel="icon" href="https://examples.motion.dev/icon.png?2869c5a378bc205a" />
+<link rel="stylesheet" type="text/css" href="https://examples.motion.dev/_next/static/css/727aa1d078fda80d.css" />
+<link rel="stylesheet" type="text/css" href="https://examples.motion.dev/_next/static/css/4fbab974a57d9e01.css" />
+<link rel="stylesheet" type="text/css" href="https://examples.motion.dev/_next/static/css/27e715e2b4c3e478.css" />
+<link rel="stylesheet" type="text/css" href="https://examples.motion.dev/_next/static/css/ddc1c0997a54b175.css" />
+<style type="text/css">
+    #color-picker {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        position: fixed;
+        --inset: 60px;
+        top: var(--inset);
+        left: var(--inset);
+        right: var(--inset);
+        bottom: var(--inset);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        --current-color: #0d63f8;
+        background-image: radial-gradient(
+            circle,
+            var(--current-color) 10%,
+            transparent 10%
+        );
+        background-size: 20px 20px;
+    }
+
+    #color-picker button {
+        position: relative;
+        width: 80px;
+        height: 80px;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        overflow: visible;
+        outline: 10px solid var(--background);
+    }
+
+    #color-picker .yellow button {
+        background-color: #fff312;
+    }
+
+    #color-picker .blue button {
+        background-color: #0d63f8;
+    }
+
+    #color-picker .pink button {
+        background-color: #ff0088;
+    }
+
+    #color-picker .selected button::after {
+        content: "";
+        position: absolute;
+        top: -8px;
+        left: -8px;
+        right: -8px;
+        bottom: -8px;
+        border: 4px solid #f5f5f5;
+        border-radius: 50%;
+        view-transition-name: color-picker-button;
+    }
+</style>
+</head>
+
+<body>
+<div id="page-container" class="theme-low-contrast">
+    <header id="site-header">
+        <section class="app_hierarchy__Pke9n">
+            <a id="main-logo" href="https://motion.dev">
+                <svg xmlns="http://www.w3.org/2000/svg" id="logo" viewBox="0 0 1260 454">
+                    <path d="M475.753 0L226.8 453.6L0 453.6L194.392 99.4116C224.526 44.5081 299.724 0 362.353 0L475.753 0Z" stroke="none"></path>
+                    <path d="M1031.93 113.4C1031.93 50.7709 1082.7 0 1145.33 0C1207.96 0 1258.73 50.7709 1258.73 113.4C1258.73 176.029 1207.96 226.8 1145.33 226.8C1082.7 226.8 1031.93 176.029 1031.93 113.4Z" stroke="none"></path>
+                    <path d="M518.278 0L745.078 0L496.125 453.6L269.325 453.6L518.278 0Z" stroke="none"></path>
+                    <path d="M786.147 0L1012.95 0L818.555 354.188C788.422 409.092 713.223 453.6 650.594 453.6L537.194 453.6L786.147 0Z" stroke="none"></path>
+                </svg>
+            </a>
+            <nav class="breadcrumb_container__KrPLA">
+                <ol>
+                    <li class="small"><a href="/">Examples</a><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right">
+                            <path d="m9 18 6-6-6-6"></path>
+                        </svg></li>
+                    <li class="small"><a href="/react">JavaScript</a><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right">
+                            <path d="m9 18 6-6-6-6"></path>
+                        </svg></li>
+                    <li>
+                        <h1 class="small">Page wipe</h1>
+                    </li>
+                </ol>
+            </nav>
+        </section>
+
+        <section class="sandbox-controls">
+            <a href="https://motion.dev/plus?referral=Example-header-react/app-store" title="Unlock source" class="primary-action plausible-event-name=Click+Source" target="_parent">
+                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                <span>Unlock source</span>
+            </a>
+            <button aria-label="Info" tabindex="0" style="transform:none">
+                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M12 16v-4"></path>
+                    <path d="M12 8h.01"></path>
+                </svg>
+            </button>
+        </section>
+    </header>
+
+    <main id="sandbox">
+        <section id="example-container">
+            <ul id="color-picker" style="--current-color: #ff0088;">
+                <li class="yellow">
+                    <button data-color="#fff312" aria-label="Yellow"></button>
+                </li>
+                <li class="blue">
+                    <button data-color="#0d63f8" aria-label="Blue"></button>
+                </li>
+                <li class="pink selected">
+                    <button data-color="#ff0088" aria-label="Pink"></button>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <footer id="site-footer" class="mobile-controls sandbox-controls">
+        <nav>
+            <div></div>
+            <div class="pagination">
+                <a href="/react/accordion" tabindex="0" style="transform:none">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                        <path d="m15 18-6-6 6-6"></path>
+                    </svg> <span>Prev</span></a><a href="/react/apple-intelligence" tabindex="0" style="transform:none"><span>Next</span><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                        <path d="m9  18 6-6-6-6"></path>
+                    </svg>
+                </a>
+            </div>
+        </nav>
+
+        <button id="open-in-new-window" tabindex="0" style="transform:none">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <path d="M15 3h6v6"></path>
+                <path d="M10 14 21 3"></path>
+            </svg><span>Open in new window</span>
+        </button>
+    </footer>
+</div>
+
+<script type="importmap">{
+    "imports": {
+        "motion" : "https://esm.sh/motion@12.23.12"
+    }
+}</script>
+<script type="module">
+import { press, animateView } from 'motion'
+
+const qs = (el, ctx=document) => ctx.querySelector(el)
+const qsa = (el, ctx=document) => Array.from(ctx.querySelectorAll(el))
+const selectColor = async (element, {currentTarget, pageX, pageY}) => {
+    const update = () => {
+        const color = currentTarget.getAttribute('data-color')
+        qs('#color-picker').style.setProperty('--current-color', color)
+        const selected = qs('#color-picker .selected')
+        selected.classList.remove('selected')
+        currentTarget.parentElement.classList.add('selected')
+    }
+
+    const from = `circle(0% at ${pageX}px ${pageY}px)`;
+    const to = `circle(100% at ${pageX}px ${pageY}px)`;
+    const animation = await animateView(update, {duration:0.4, ease:[0.28, 0.02, 0.1, 0.99],}).new(
+        { clipPath: [from, to] },
+        { duration: 0.6, ease: 'easeIn' }
+    )
+}
+
+press('#color-picker button', (element, event) => {
+    selectColor(element, event)
+})
+
+/* Array.from(qsa('button', qs('#color-picker')), element => {
+    element.addEventListener('click', event => {
+        selectColor(element, event)
+    });
+}); */
+</script>
+</body> 
+</html>

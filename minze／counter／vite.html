@@ -1,0 +1,252 @@
+<!doctype html> 
+
+<html lang="en"> 
+<head>
+<title>minze - Dead-simple JS framework for native web components</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta property="og:type" content="website">
+<meta property="og:title" content="Minze">
+<meta property="og:url" content="https://minze.dev">
+<meta property="og:description" content="Dead-simple JS framework for native web components.">
+<meta property="og:image" content="https://minze.dev/social.jpg">
+<meta property="og:image:alt" content="Preview of Minze">
+
+<link rel="canonical" href="https://minze.dev" />
+<link rel="icon" href="https://minze.dev/favicon.svg?v=1">
+<!-- <link rel="stylesheet" type="text/css" href="style.css" /> -->
+<style type="text/css">
+    :root {
+      color-scheme: light dark;
+      font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+      line-height: 1.5;
+      font-weight: 400;
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+    }
+
+    #app {
+      display: flex;
+      place-items: center;
+      min-width: 320px;
+      min-height: 100vh;
+    }
+
+    :not(:defined) {
+      visibility: hidden;
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        color: rgb(33 53 71);
+        background-color: rgb(255 255 255);
+      }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        color: rgb(255 255 255 / 87%);
+        background-color: rgb(36 36 36);
+      }
+    }
+</style>
+</head>
+
+<body>
+<div id="app"></div>
+
+<script type="module">
+import { Minze, MinzeElement } from 'https://esm.sh/minze@1.10.1'
+
+class MyButton extends MinzeElement {
+  html = () => `
+    <button>
+      <slot></slot>
+    </button>
+  `
+
+  css = () => `
+    button {
+      display: inline-block;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      padding: 0.6em 1.2em;
+      font-size: 1em;
+      font-weight: 500;
+      font-family: inherit;
+      color: currentColor;
+      background-color: rgb(249 249 249);
+      cursor: pointer;
+      user-select: none;
+      position: relative;
+      transition: border-color 0.25s;
+    }
+
+    button:hover {
+      border-color: var(--color-primary, rgb(55 245 220));
+    }
+
+    button:active {
+      outline: 3px solid var(--color-primary, rgb(55 245 220));
+      outline-offset: -2px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      button {
+        color: currentColor;
+        background-color: rgb(26 26 26);
+      }
+    }
+  `
+}
+MyButton.define()
+
+class MinzeLogo extends MinzeElement {
+  attrs = [
+    ['width', 347],
+    ['height', 146]
+  ]
+
+  static observedAttributes = ['width', 'height']
+
+  html = () => `
+    <svg width="${this.width}" height="${this.height}" viewBox="0 0 347 146" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M145.097 0.681393V0.548589L72.5485 0.548588L72.5485 72.9644L72.5485 73.097H72.6811L145.097 145.513V145.646H217.645V88.8345L274.324 145.513V145.646H346.872V73.0972H346.74L274.324 0.681439V0.548589L201.775 0.548588V57.3599L145.097 0.681393ZM72.5485 73.0972V145.646H0V73.0972H72.5485Z" fill="url(#paint0_linear_114_127)"/><defs><linearGradient id="paint0_linear_114_127" x1="302.947" y1="38.8066" x2="-5.2241e-05" y2="145.645" gradientUnits="userSpaceOnUse"><stop stop-color="#32FFA0"/> <stop offset="1" stop-color="#37F5DC"/></linearGradient></defs></svg>
+  `
+
+  css = () => `
+    :host {
+      display: inline-block;
+    }
+  `
+}
+MinzeLogo.define()
+
+class ViteLogo extends MinzeElement {
+  attrs = [
+    ['width', 256],
+    ['height', 257]
+  ]
+
+  static observedAttributes = ['width', 'height']
+
+  html = () => `
+    <svg width="${this.width}" height="${this.height}" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" viewBox="0 0 256 257"><defs><linearGradient id="IconifyId1813088fe1fbc01fb466" x1="-.828%" x2="57.636%" y1="7.652%" y2="78.411%"><stop offset="0%" stop-color="#41D1FF"></stop><stop offset="100%" stop-color="#BD34FE"></stop></linearGradient><linearGradient id="IconifyId1813088fe1fbc01fb467" x1="43.376%" x2="50.316%" y1="2.242%" y2="89.03%"><stop offset="0%" stop-color="#FFEA83"></stop><stop offset="8.333%" stop-color="#FFDD35"></stop><stop offset="100%" stop-color="#FFA800"></stop></linearGradient></defs><path fill="url(#IconifyId1813088fe1fbc01fb466)" d="M255.153 37.938L134.897 252.976c-2.483 4.44-8.862 4.466-11.382.048L.875 37.958c-2.746-4.814 1.371-10.646 6.827-9.67l120.385 21.517a6.537 6.537 0 0 0 2.322-.004l117.867-21.483c5.438-.991 9.574 4.796 6.877 9.62Z"></path><path fill="url(#IconifyId1813088fe1fbc01fb467)" d="M185.432.063L96.44 17.501a3.268 3.268 0 0 0-2.634 3.014l-5.474 92.456a3.268 3.268 0 0 0 3.997 3.378l24.777-5.718c2.318-.535 4.413 1.507 3.936 3.838l-7.361 36.047c-.495 2.426 1.782 4.5 4.151 3.78l15.304-4.649c2.372-.72 4.652 1.36 4.15 3.788l-11.698 56.621c-.732 3.542 3.979 5.473 5.943 2.437l1.313-2.028l72.516-144.72c1.215-2.423-.88-5.186-3.54-4.672l-25.505 4.922c-2.396.462-4.435-1.77-3.759-4.114l16.646-57.705c.677-2.35-1.37-4.583-3.769-4.113Z"></path></svg>
+  `
+
+  css = () => `
+    :host {
+      display: inline-block;
+    }
+  `
+}
+ViteLogo.define()
+
+class MyElement extends MinzeElement {
+  reactive = [['count', 0]]
+
+  increaseCount = () => this.count++
+
+  text = 'Click on the Minze and Vite logos to learn more'
+
+  html = () => `
+    <div>
+      <a href="https://minze.dev" target="_blank">
+        <minze-logo width="142" height="60" class="logo"></minze-logo>
+      </a>
+
+      <a href="https://vitejs.dev" target="_blank">
+        <vite-logo width="100" height="100" class="logo vite"></vite-logo>
+      </a>
+    </div>
+
+    <slot></slot>
+
+    <div class="card">
+      <my-button on:click="increaseCount">
+        count is ${this.count}
+      </my-button>
+    </div>
+
+    <p class="text">
+      ${this.text}
+    </p>
+  `
+
+  css = () => `
+    :host {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 2rem;
+      text-align: center;
+      font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+      color: rgb(33 53 71);
+      background-color: rgb(255 255 255);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :host {
+        color: rgb(255 255 255 / 87%);
+        background-color: rgb(36 36 36);
+      }
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .logo {
+      padding: 1.5em;
+      will-change: filter;
+      transition: filter 300ms;
+    }
+
+    .logo:hover {
+      filter: drop-shadow(0 0 2em rgb(50 255 160 / 65%));
+    }
+
+    .logo.vite:hover {
+      filter: drop-shadow(0 0 2em rgb(100 108 255 / 65%));
+    }
+
+    .card {
+      padding: 2em;
+    }
+
+    .text {
+      color: rgb(136 136 136);
+      margin: 1rem 0;
+    }
+
+    ::slotted(h1) {
+      font-size: 3.2em;
+      line-height: 1.1;
+      transition: rotate 750ms;
+      ${this.count >= 5 ? 'rotate: 360deg;' : ''}
+    }
+  `
+}
+MyElement.define()
+
+const defineAll = Minze.defineAll
+const modules = { 'lib/my-button.js': MyButton, 'lib/my-element.js': MyElement }
+defineAll(modules)
+
+document.querySelector('#app').innerHTML = `
+    <my-element>
+        <h1>Minze + Vite</h1>
+    </my-element>
+`
+</script>
+</body> 
+</html>

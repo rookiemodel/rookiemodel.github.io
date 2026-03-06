@@ -1,0 +1,75 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+<title>Markdown Viewer</title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="canonical" href="https://github.githubassets.com" />
+<link rel="icon" href="https://github.githubassets.com/favicons/favicon.svg">
+<link rel="stylesheet" type="text/css" href="https://unpkg.com/github-markdown-css@2.10.0/github-markdown.css" />
+<link rel="stylesheet" type="text/css" href="https://unpkg.com/semantic-ui@2.3.2/dist/semantic.min.css" />
+<style type="text/css">
+/* idex.css */
+html{-webkit-box-sizing:border-box;box-sizing:border-box}*,::after,::before{-webkit-box-sizing:inherit;box-sizing:inherit}body,html{height:100vh;margin:0;padding:0;overflow:hidden;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;color:#333;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';font-size:16px;line-height:1.5;word-wrap:break-word}.icon{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;display:inline-block;-ms-flex-negative:0;flex-shrink:0;width:16px;height:16px;margin:0 8px}button{border:none;padding:0}
+
+/* prism-theme.css */
+code[class*=language-],pre[class*=language-]{color:#000;background:0 0;text-shadow:0 1px #fff;font-family:'Fira Code',Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-ms-hyphens:none;hyphens:none}code[class*=language-] ::-moz-selection,code[class*=language-]::-moz-selection,pre[class*=language-] ::-moz-selection,pre[class*=language-]::-moz-selection{text-shadow:none;background:#b3d4fc}code[class*=language-] ::selection,code[class*=language-]::selection,pre[class*=language-] ::selection,pre[class*=language-]::selection{text-shadow:none;background:#b3d4fc}@media print{code[class*=language-],pre[class*=language-]{text-shadow:none}}pre[class*=language-]{padding:1em;margin:.5em 0;overflow:auto}:not(pre)>code[class*=language-],pre[class*=language-]{background:#f5f2f0}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#708090}.token.boolean,.token.constant,.token.deleted,.token.number,.token.property,.token.punctuation,.token.symbol,.token.tag{color:#24292e}.tag .token.punctuation,.token.atrule,.token.attr-value,.token.keyword{color:#d73a49}.namespace{opacity:.7}.tag .token.attr-name,.tag .token.builtin,.tag .token.char,.tag .token.inserted,.tag .token.selector,.tag .token.string{color:#4f57a0}.token.string{color:#005cc5}.language-css .token.string,.style .token.string,.token.entity,.token.operator,.token.url{color:#a67f59;background:hsla(0,0%,100%,.5)}.token.function{color:#6f42c1}.token.important,.token.regex,.token.variable{color:#e90}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}
+
+/* App.css */
+.App{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;height:100vh;background:#1e1e1e}.App-layout{-ms-flex:1 1;flex:1 1;display:-ms-flexbox;display:flex;-ms-flex-direction:row;flex-direction:row;-ms-flex-pack:center;justify-content:center}
+
+/* Preview.css */
+.Preview{display:-ms-flexbox;display:flex;-ms-flex:1 0 100%;flex:1 0 100%;padding:16px 16px 16px 0;-ms-flex-order:2;order:2}.Preview.split{-ms-flex:1 0 50%;flex:1 0 50%;max-width:50%}.Preview-document{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;-ms-flex:1 1;flex:1 1;width:100%;max-width:978px;margin:0 auto;background:#fff;border:1px solid #ddd;border-radius:3px}.Preview-heading{display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center;-ms-flex:0 0 auto;flex:0 0 auto;margin:0 0 8px;padding:9px 10px 10px 9px;background:#f6f8fa;border-bottom:1px solid #ddd;border-radius:3px 3px 0 0}.Preview-title{margin:0;font-size:14px;font-weight:600;line-height:17px}.Preview-body{height:-webkit-min-content;height:-moz-min-content;height:min-content;padding:24px;overflow:hidden;overflow-y:auto}
+
+/* Overriding styles */
+body,html{overflow:unset;height:unset}article{margin:unset!important;padding:unset!important}.App{height:unset;visibility:hidden;background:#fff}
+</style>
+</head>
+
+<body>
+<div class="App">
+    <div class="App-layout preview">
+        <section class="Preview preview">
+            <article class="Preview-document">
+                <header class="Preview-heading">
+                    <svg aria-hidden="true" focusable="false" class="octicon octicon-book icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom">
+                        <path d="M0 1.75A.75.75 0 0 1 .75 1h4.253c1.227 0 2.317.59 3 1.501A3.743 3.743 0 0 1 11.006 1h4.245a.75.75 0 0 1 .75.75v10.5a.75.75 0 0 1-.75.75h-4.507a2.25 2.25 0 0 0-1.591.659l-.622.621a.75.75 0 0 1-1.06 0l-.622-.621A2.25 2.25 0 0 0 5.258 13H.75a.75.75 0 0 1-.75-.75Zm7.251 10.324.004-5.073-.002-2.253A2.25 2.25 0 0 0 5.003 2.5H1.5v9h3.757a3.75 3.75 0 0 1 1.994.574ZM8.755 4.75l-.004 7.322a3.752 3.752 0 0 1 1.992-.572H14.5v-9h-3.495a2.25 2.25 0 0 0-2.25 2.25Z"></path>
+                    </svg>
+                    <h3 class="Preview-title">My Document</h3>
+                </header>
+
+                <div id="preview" class="Preview-body markdown-body">
+                </div>
+            </article>
+        </section>
+    </div>
+</div>
+
+<script type="module">
+import prism from 'https://esm.sh/prismjs@1.15.0'
+import marked from 'https://esm.sh/marked@0.4.0'
+
+(async () => {
+    marked.setOptions({gfm: true, tables: true, pedantic: false, sanitize: false, smartLists: true, smartypants: false, breaks: true,
+        highlight: (code, lang) => prism.highlight(code, prism.languages[lang] || prism.languages['js']),
+        renderer: Object.assign(new marked.Renderer(), {
+            link: (href, title, text, style) => `<a target="_blank" href="${href}" title="${title}" style=${style || ''}>${text}</a>`
+        })
+    })
+
+    const $ = s => document.querySelector(s);
+    const ensure = str => str.replace(/(?<!\.md)$/, '.md');
+    const file = ensure(new URLSearchParams(window.location.search).get('file'));
+    const res = await fetch(`./${file}`);
+    const md = await res.text();
+    $('#preview').innerHTML = marked(md);
+    $('.App').style.visibility = 'visible';
+    document.title = decodeURIComponent(file);
+})();
+</script>
+</body>
+</html>
